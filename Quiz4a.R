@@ -12,7 +12,6 @@ lucy_measurements <- true_heights + rnorm(20, mean = 0, sd = 1.5)
 # Combine the measurements into a data frame
 measurements <- data.frame(
   Friends = 1:20,
-  True = true_heights,
   Edward = edward_measurements,
   Hugo = hugo_measurements,
   Lucy = lucy_measurements
@@ -46,7 +45,7 @@ print(results)
 library(ggplot2)
 library(tidyr)
 
-measurements_reshape <- gather(measurements, key = "Measured_by", value = "Measurement", -Friends, -True)
+measurements_reshape <- gather(measurements, key = "Measured_by", value = "Measurement", -Friends)
 
 # Create the scatter plot
 ggplot(measurements_reshape, aes(x = Friends, y = Measurement, color = Measured_by)) +
